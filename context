@@ -1,0 +1,46 @@
+**Website Development Prompt for Cursore AI**
+
+**Project Title:** Robotics Education & Learning Kits Platform
+
+### **Objective:**
+Create a modern, visually appealing, and user-friendly **React Vite-based single-page web application** for showcasing and selling robotics courses, learning kits, and electronic components.
+
+### **Key Features:**
+1. **User Authentication**  
+   - Implement **Firebase Authentication** (Email login + Password reset feature).  
+   - I will provide the Firebase API key for integration.
+
+2. **Website Sections:**
+   - **Courses Section:** Display details of my courses:
+     1. **The Adventure of Arduino**
+     2. **Fun with IoT**
+     3. **Project Pathshala**
+   - **Learning Kits Section:** Showcase and sell learning kits essential for robotics education.
+   - **Electronics Components Section:** Pre-made electronic projects and individual components available for purchase.
+
+3. **About Page:**
+   - Display videos of students and their self-built robotics projects.
+   - Provide company details and mission statement.
+   - Highlight the **Founder’s Name and Information** at the end.
+
+### **Design & UI Preferences:**
+- **Dark Theme** with **Glassmorphism (Glass UI) Effect**.
+- **Colorful & Modern Look** with a **Gradient Pink-Red Border** for buttons and navbar tabs.
+- **Dark Blue/Black Inner Background** for contrast and a futuristic feel.
+- **Responsive Design** for smooth experience across devices.
+- **Cool, Interactive Animations** for an engaging user experience.
+
+### **Technical Stack:**
+- **Frontend:** React + Vite
+- **Authentication:** Firebase
+- **Styling:** Tailwind CSS or Styled Components (for custom styling & dark theme)
+- **State Management:** React Context API or Redux (if needed)
+
+### **Additional Requirements:**
+- Ensure fast performance and seamless navigation.
+- Implement hover effects and smooth animations for UI elements.
+- SEO optimization for better discoverability.
+- Mobile-friendly and lightweight.
+
+This website should be **engaging, visually appealing, and easy to navigate** while making robotics learning accessible and exciting for students. Let’s make it as **cool and futuristic as possible! 🚀**
+
