@@ -67,12 +67,39 @@ const Navbar: React.FC = () => {
 
           {currentUser ? (
             <div className="flex items-center space-x-4">
-              {isAdmin && (
+              {isAdmin ? (
                 <Link 
                   to="/admin" 
-                  className="text-white hover:text-accent-pink transition-colors"
+                  className={`relative text-white hover:text-accent-pink transition-colors ${
+                    isActive('/admin') ? 'text-accent-pink' : ''
+                  }`}
                 >
+                  {isActive('/admin') && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-[-6px] left-0 right-0 h-0.5 bg-gradient-to-r from-accent-pink to-accent-red"
+                      initial={false}
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
                   Admin
+                </Link>
+              ) : (
+                <Link 
+                  to="/dashboard" 
+                  className={`relative text-white hover:text-accent-pink transition-colors ${
+                    isActive('/dashboard') ? 'text-accent-pink' : ''
+                  }`}
+                >
+                  {isActive('/dashboard') && (
+                    <motion.div
+                      layoutId="activeNavIndicator"
+                      className="absolute bottom-[-6px] left-0 right-0 h-0.5 bg-gradient-to-r from-accent-pink to-accent-red"
+                      initial={false}
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  )}
+                  My Account
                 </Link>
               )}
               <button 
@@ -128,14 +155,30 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             
-            {isAdmin && (
-              <Link
-                to="/admin"
-                className="px-4 py-2 rounded-md hover:bg-primary-light"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Admin
-              </Link>
+            {currentUser && (
+              <>
+                {isAdmin ? (
+                  <Link
+                    to="/admin"
+                    className={`px-4 py-2 rounded-md hover:bg-primary-light ${
+                      isActive('/admin') ? 'text-accent-pink gradient-border' : ''
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                ) : (
+                  <Link
+                    to="/dashboard"
+                    className={`px-4 py-2 rounded-md hover:bg-primary-light ${
+                      isActive('/dashboard') ? 'text-accent-pink gradient-border' : ''
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    My Account
+                  </Link>
+                )}
+              </>
             )}
             
             {currentUser ? (

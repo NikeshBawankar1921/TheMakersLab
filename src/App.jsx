@@ -19,6 +19,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminPage from './pages/AdminPage';
+import UserDashboardPage from './pages/UserDashboardPage';
 
 // Constants
 const ADMIN_EMAIL = 'nikeshbawankar1921@gmail.com';
@@ -38,6 +39,9 @@ function App() {
               
               {/* Admin Routes - Protected by the AdminPage component itself */}
               <Route path="/admin" element={<AdminPage />} />
+              
+              {/* User Dashboard */}
+              <Route path="/dashboard" element={<UserDashboardPage />} />
               
               {/* Main Routes with Layout */}
               <Route path="/" element={<Layout><HomePage /></Layout>} />

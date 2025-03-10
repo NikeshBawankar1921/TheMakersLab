@@ -6,6 +6,9 @@ import {
   signOut, 
   onAuthStateChanged,
   sendPasswordResetEmail,
+  updatePassword,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
   UserCredential
 } from 'firebase/auth';
 import { auth } from '../firebase/config';
@@ -19,6 +22,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateProfile: (data: { displayName?: string, photoURL?: string, phoneNumber?: string, address?: any }) => Promise<void>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -70,6 +74,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     await userService.updateUserProfile(currentUser.uid, data);
   };
 
+  // Change user password with reauthentication
+  const changePassword = async (currentPassword: string, newPassword: string) => {
+    if (!currentUser) throw new Error('No authenticated user');
+    if (!currentUser.email) throw new Error('User has no email');
+    
+    // Re-authenticate user before changing password
+    const credential = EmailAuthProvider.credential(currentUser.email, currentPassword);
+    await reauthenticateWithCredential(currentUser, credential);
+    
+    // Change password
+    await updatePassword(currentUser, newPassword);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -86,7 +103,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     login,
     logout,
     resetPassword,
-    updateProfile
+    updateProfile,
+    changePassword
   };
 
   return (
