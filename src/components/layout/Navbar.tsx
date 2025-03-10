@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { useAdmin } from '../../contexts/AdminContext';
 import { motion } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { currentUser, logout } = useAuth();
+  const { adminSettings } = useAdmin();
   const location = useLocation();
+
+  // Get site title from admin settings or use default
+  const siteTitle = adminSettings?.siteTitle || 'The Makers Lab';
 
   const handleLogout = async () => {
     try {
@@ -34,7 +39,7 @@ const Navbar: React.FC = () => {
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <span className="text-2xl font-bold bg-gradient-to-r from-accent-pink to-accent-red bg-clip-text text-transparent">
-            The Makers Lab
+            {siteTitle}
           </span>
         </Link>
 

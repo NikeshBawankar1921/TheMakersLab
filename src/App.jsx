@@ -5,6 +5,7 @@ import { AdminProvider } from './contexts/AdminContext';
 import { ProductProvider } from './contexts/ProductContext';
 import Layout from './components/layout/Layout';
 import ScrollToTop from './components/utils/ScrollToTop';
+import SiteTitleManager from './components/utils/SiteTitleManager';
 // Import the CSS to make sure it's included
 import './styles/theme.css';
 
@@ -28,6 +29,7 @@ function App() {
       <ScrollToTop />
       <AuthProvider>
         <AdminProvider>
+          <SiteTitleManager />
           <ProductProvider>
             <Routes>
               {/* Auth Routes */}

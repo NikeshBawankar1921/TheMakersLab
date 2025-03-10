@@ -6,6 +6,9 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   const { adminSettings } = useAdmin();
 
+  // Extract site title from admin settings with fallback
+  const siteTitle = adminSettings?.siteTitle || 'The Makers Lab';
+
   // Extract contact information from admin settings with fallbacks
   const contactEmail = adminSettings?.contactEmail || 'info@themakerslab.com';
   const contactPhone = adminSettings?.contactNumber || '+91 123 456 7890';
@@ -25,7 +28,7 @@ const Footer: React.FC = () => {
           <div className="col-span-1">
             <Link to="/" className="flex items-center mb-4">
               <span className="text-2xl font-bold bg-gradient-to-r from-accent-pink to-accent-red bg-clip-text text-transparent">
-                The Makers Lab
+                {siteTitle}
               </span>
             </Link>
             <p className="text-gray-300 mb-4">
@@ -124,7 +127,7 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <p className="text-gray-300 text-sm">
-              © {currentYear} The Makers Lab. All rights reserved.
+              © {currentYear} {siteTitle}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy-policy" className="text-gray-300 hover:text-accent-pink text-sm transition-colors">
