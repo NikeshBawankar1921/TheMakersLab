@@ -12,6 +12,7 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [resetSent, setResetSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
   const { login, resetPassword } = useAuth();
   const navigate = useNavigate();
 
@@ -28,8 +29,14 @@ const LoginPage: React.FC = () => {
       setLoading(true);
       await login(email, password);
       navigate('/');
-    } catch (err) {
-      setError('Failed to sign in. Please check your credentials.');
+    } catch (err: any) {
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+        setError('Invalid email or password. Please try again.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else {
+        setError('Failed to sign in. Please check your credentials.');
+      }
       console.error(err);
     } finally {
       setLoading(false);
@@ -38,20 +45,29 @@ const LoginPage: React.FC = () => {
 
   const handleResetPassword = async () => {
     if (!email) {
-      setError('Please enter your email address');
+      setError('Please enter your email address to reset your password');
       return;
     }
 
     try {
       setError('');
-      setLoading(true);
+      setResetLoading(true);
       await resetPassword(email);
       setResetSent(true);
-    } catch (err) {
-      setError('Failed to send password reset email');
+      
+      setError('');
+    } catch (err: any) {
+      if (err.code === 'auth/user-not-found') {
+        setError('No account found with this email address.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Please enter a valid email address.');
+      } else {
+        setError('Failed to send password reset email. Please try again.');
+      }
       console.error(err);
+      setResetSent(false);
     } finally {
-      setLoading(false);
+      setResetLoading(false);
     }
   };
 
@@ -68,14 +84,16 @@ const LoginPage: React.FC = () => {
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 rounded-lg bg-red-500 bg-opacity-20 text-red-200 text-sm">
+          <div className="mb-4 p-3 rounded-lg bg-red-500 bg-opacity-20 text-red-600 text-sm font-medium">
             {error}
           </div>
         )}
 
         {resetSent && (
-          <div className="mb-4 p-3 rounded-lg bg-green-500 bg-opacity-20 text-green-200 text-sm">
-            Password reset instructions have been sent to your email!
+          <div className="mb-4 p-3 rounded-lg bg-green-500 bg-opacity-20 text-black text-sm font-medium">
+            <p className="font-bold">Password Reset Email Sent!</p>
+            <p>Please check your inbox at <span className="font-bold">{email}</span> for instructions to reset your password.</p>
+            <p className="mt-1 text-xs">If you don't see the email, please check your spam folder.</p>
           </div>
         )}
 
@@ -103,9 +121,10 @@ const LoginPage: React.FC = () => {
               <button
                 type="button"
                 onClick={handleResetPassword}
-                className="text-accent-pink hover:text-accent-red transition-colors"
+                disabled={resetLoading}
+                className={`text-accent-pink hover:text-accent-red transition-colors ${resetLoading ? 'opacity-70 cursor-wait' : ''}`}
               >
-                Forgot password?
+                {resetLoading ? 'Sending...' : 'Forgot password?'}
               </button>
             </div>
             <div className="text-sm">
@@ -119,7 +138,7 @@ const LoginPage: React.FC = () => {
             type="submit"
             fullWidth
             isLoading={loading}
-            disabled={loading}
+            disabled={loading || resetLoading}
           >
             Login
           </Button>
