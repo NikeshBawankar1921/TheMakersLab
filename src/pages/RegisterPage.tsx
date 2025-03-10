@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import TextField from '../components/ui/TextField';
 import Button from '../components/ui/Button';
+import SiteLogo from '../components/ui/SiteLogo';
 import { useAuth } from '../contexts/AuthContext';
 
 const RegisterPage: React.FC = () => {
@@ -51,7 +52,12 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
+    <div className="flex flex-col items-center min-h-[80vh] pt-10">
+      {/* Site Logo */}
+      <div className="mb-8 animate-float">
+        <SiteLogo size="large" />
+      </div>
+      
       <Card className="w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center bg-gradient-to-r from-accent-pink to-accent-red bg-clip-text text-transparent">
           Create an Account

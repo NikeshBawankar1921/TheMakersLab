@@ -11,6 +11,7 @@ const AdminSettings: React.FC = () => {
     siteTitle: '',
     siteDescription: '',
     contactEmail: '',
+    contactNumber: '',
     bannerMessage: '',
     isMaintenanceMode: false,
     primaryColor: '',
@@ -33,6 +34,7 @@ const AdminSettings: React.FC = () => {
         siteTitle: adminSettings.siteTitle || '',
         siteDescription: adminSettings.siteDescription || '',
         contactEmail: adminSettings.contactEmail || '',
+        contactNumber: adminSettings.contactNumber || '',
         bannerMessage: adminSettings.bannerMessage || '',
         isMaintenanceMode: adminSettings.isMaintenanceMode || false,
         primaryColor: adminSettings.theme?.primaryColor || '',
@@ -80,6 +82,7 @@ const AdminSettings: React.FC = () => {
         siteTitle: formData.siteTitle,
         siteDescription: formData.siteDescription,
         contactEmail: formData.contactEmail,
+        contactNumber: formData.contactNumber,
         bannerMessage: formData.bannerMessage,
         isMaintenanceMode: formData.isMaintenanceMode,
         theme: {
@@ -154,6 +157,15 @@ const AdminSettings: React.FC = () => {
                 type="email"
                 value={formData.contactEmail}
                 onChange={handleInputChange}
+              />
+              
+              <TextField
+                label="Contact Number"
+                name="contactNumber"
+                type="tel"
+                value={formData.contactNumber}
+                onChange={handleInputChange}
+                placeholder="+91 9876543210"
               />
             </div>
             

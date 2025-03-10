@@ -6,6 +6,7 @@ export interface AdminSettings {
   siteTitle?: string;
   siteDescription?: string;
   contactEmail?: string;
+  contactNumber?: string;
   featuredProducts?: string[];
   bannerMessage?: string;
   isMaintenanceMode?: boolean;
@@ -74,6 +75,7 @@ export const initializeDefaultAdminSettings = async (): Promise<void> => {
         siteTitle: "The Makers Lab",
         siteDescription: "Robotics Education & Learning Kits Platform",
         contactEmail: "admin@themakerslab.com",
+        contactNumber: "+91 9876543210",
         isMaintenanceMode: false,
         theme: {
           primaryColor: "#121212",

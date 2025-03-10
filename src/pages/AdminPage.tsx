@@ -5,6 +5,7 @@ import ProductManager from '../components/admin/ProductManager';
 import AdminSettings from '../components/admin/AdminSettings';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
+import SiteLogo from '../components/ui/SiteLogo';
 
 const ADMIN_EMAIL = 'nikeshbawankar1921@gmail.com';
 
@@ -44,6 +45,9 @@ const AdminPage: React.FC = () => {
   if (!isAuthorized) {
     return (
       <div className="container mx-auto px-4 py-12">
+        <div className="flex justify-center mb-8">
+          <SiteLogo size="medium" />
+        </div>
         <Card className="p-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Unauthorized Access</h2>
           <p className="text-gray-300 mb-6">
@@ -59,9 +63,12 @@ const AdminPage: React.FC = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-accent-pink to-accent-red bg-clip-text text-transparent">
-        Admin Dashboard
-      </h1>
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+        <SiteLogo size="medium" className="mb-4 md:mb-0" />
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-accent-pink to-accent-red bg-clip-text text-transparent">
+          Admin Dashboard
+        </h1>
+      </div>
       
       {/* Admin Navigation Tabs */}
       <div className="mb-8 border-b border-gray-700">
