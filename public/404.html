@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>The Makers Lab</title>
+  <script>
+    // ========================================
+    // Redirect to index.html while preserving query and hash
+    // This ensures all SPA routes work after a page refresh
+    // ========================================
+    const segment = 1; // Adjust this depending on your hosting setup
+    
+    const path = window.location.pathname.split('/').slice(0, 1 + segment).join('/') || '/';
+    const fullPath = window.location.pathname.slice(path.length);
+    
+    // Save the full path to session storage
+    sessionStorage.setItem('redirect', fullPath + window.location.search + window.location.hash);
+    
+    // Redirect to the root
+    window.location.replace(path);
+  </script>
+</head>
+<body>
+  <h2>Page Not Found</h2>
+  <p>Redirecting you to the homepage...</p>
+</body>
+</html> 
