@@ -23,6 +23,18 @@ const AdminPage: React.FC = () => {
     checkAdminStatus();
   }, [currentUser]);
   
+  // Scroll to top when switching tabs
+  const handleTabChange = (tab: string) => {
+    // Scroll to top with smooth behavior
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    
+    // Change the active tab
+    setActiveTab(tab);
+  };
+  
   // Redirect if not logged in
   if (!currentUser) {
     return <Navigate to="/login" />;
@@ -60,7 +72,7 @@ const AdminPage: React.FC = () => {
                 ? 'text-accent-pink border-b-2 border-accent-pink'
                 : 'text-gray-400 hover:text-white'
             }`}
-            onClick={() => setActiveTab('products')}
+            onClick={() => handleTabChange('products')}
           >
             Products
           </button>
@@ -70,7 +82,7 @@ const AdminPage: React.FC = () => {
                 ? 'text-accent-pink border-b-2 border-accent-pink'
                 : 'text-gray-400 hover:text-white'
             }`}
-            onClick={() => setActiveTab('users')}
+            onClick={() => handleTabChange('users')}
           >
             Users
           </button>
@@ -80,7 +92,7 @@ const AdminPage: React.FC = () => {
                 ? 'text-accent-pink border-b-2 border-accent-pink'
                 : 'text-gray-400 hover:text-white'
             }`}
-            onClick={() => setActiveTab('orders')}
+            onClick={() => handleTabChange('orders')}
           >
             Orders
           </button>
@@ -90,7 +102,7 @@ const AdminPage: React.FC = () => {
                 ? 'text-accent-pink border-b-2 border-accent-pink'
                 : 'text-gray-400 hover:text-white'
             }`}
-            onClick={() => setActiveTab('settings')}
+            onClick={() => handleTabChange('settings')}
           >
             Settings
           </button>

@@ -4,6 +4,9 @@ import { AuthProvider } from './contexts/AuthContext';
 import { AdminProvider } from './contexts/AdminContext';
 import { ProductProvider } from './contexts/ProductContext';
 import Layout from './components/layout/Layout';
+import ScrollToTop from './components/utils/ScrollToTop';
+// Import the CSS to make sure it's included
+import './styles/theme.css';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -22,6 +25,7 @@ const ADMIN_EMAIL = 'nikeshbawankar1921@gmail.com';
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <AdminProvider>
           <ProductProvider>

@@ -1,8 +1,12 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { motion } from 'framer-motion';
+import KidButton from './KidButton';
+
+// Define the color type that matches KidButton's accepted colors
+type KidButtonColor = 'primary' | 'pink' | 'yellow' | 'green' | 'blue' | 'purple' | 'rainbow';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'pink' | 'yellow' | 'green' | 'blue' | 'purple' | 'rainbow';
   fullWidth?: boolean;
   isLoading?: boolean;
 }
@@ -16,56 +20,44 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseClasses = 'btn flex items-center justify-center';
-  const widthClasses = fullWidth ? 'w-full' : '';
-  
-  const getVariantClasses = () => {
+  // Map our variant to KidButton colors
+  const getKidButtonColor = (): KidButtonColor => {
     switch (variant) {
       case 'primary':
-        return 'bg-primary-light text-white';
+        return 'primary';
       case 'secondary':
-        return 'bg-transparent text-white';
+        return 'blue';
       case 'outline':
-        return 'bg-transparent';
+        return 'rainbow';
+      case 'pink':
+        return 'pink';
+      case 'yellow':
+        return 'yellow';
+      case 'green':
+        return 'green';
+      case 'blue':
+        return 'blue';
+      case 'purple':
+        return 'purple';
+      case 'rainbow':
+        return 'rainbow';
       default:
-        return 'bg-primary-light text-white';
+        return 'primary';
     }
   };
 
+  // Use our new KidButton component
   return (
-    <motion.button
-      className={`${baseClasses} ${getVariantClasses()} ${widthClasses} ${className} ${
-        disabled || isLoading ? 'opacity-70 cursor-not-allowed' : ''
-      }`}
-      whileHover={!disabled && !isLoading ? { scale: 1.05 } : {}}
-      whileTap={!disabled && !isLoading ? { scale: 0.95 } : {}}
-      disabled={disabled || isLoading}
+    <KidButton
+      color={getKidButtonColor()}
+      className={className}
+      fullWidth={fullWidth}
+      isLoading={isLoading}
+      disabled={disabled}
       {...props}
     >
-      {isLoading && (
-        <svg
-          className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          ></circle>
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
-        </svg>
-      )}
       {children}
-    </motion.button>
+    </KidButton>
   );
 };
 

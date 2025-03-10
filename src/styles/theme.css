@@ -1,0 +1,189 @@
+:root {
+  /* Kid-friendly color palette */
+  --color-primary: #6366f1; /* Bright indigo */
+  --color-primary-light: #818cf8; /* Lighter indigo */
+  --color-primary-dark: #4f46e5; /* Darker indigo */
+  
+  --color-accent-pink: #ec4899; /* Bright pink */
+  --color-accent-yellow: #facc15; /* Bright yellow */
+  --color-accent-green: #4ade80; /* Bright green */
+  --color-accent-blue: #38bdf8; /* Bright blue */
+  --color-accent-purple: #a855f7; /* Bright purple */
+  
+  --color-background: #f8fafc; /* Very light background */
+  --color-background-light: #ffffff; /* White */
+  --color-background-dark: #e2e8f0; /* Light gray */
+  
+  --color-text: #1e293b; /* Dark blue/gray for text */
+  --color-text-light: #475569; /* Medium gray for secondary text */
+  --color-text-lighter: #64748b; /* Lighter gray for tertiary text */
+  
+  --color-border: #cbd5e1; /* Light border color */
+  --color-error: #ef4444; /* Red for errors */
+  --color-success: #22c55e; /* Green for success */
+  
+  /* Card and UI element styling */
+  --border-radius: 16px; /* Rounded corners for a friendly look */
+  --button-radius: 24px; /* Very round buttons for kid appeal */
+}
+
+/* Overriding the dark theme with a light, colorful theme */
+body {
+  background-color: var(--color-background);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 40% 70%, rgba(56, 189, 248, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 90% 90%, rgba(250, 204, 21, 0.1) 0%, transparent 20%);
+  color: var(--color-text);
+}
+
+/* Glass card effect with lighter colors */
+.glass-effect {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-effect:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Card styling */
+.card {
+  background-color: var(--color-background-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.card:hover {
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+/* Button styling */
+button {
+  border-radius: var(--button-radius) !important;
+  transition: all 0.3s ease !important;
+  font-weight: 600 !important;
+}
+
+/* Gradient border effect */
+.gradient-border {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--border-radius);
+  padding: 2px;
+  background: linear-gradient(45deg, var(--color-accent-pink), var(--color-accent-yellow), var(--color-accent-green), var(--color-accent-blue), var(--color-accent-purple));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(90deg, var(--color-accent-pink), var(--color-accent-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Override for text colors */
+.text-white {
+  color: var(--color-text) !important;
+}
+
+.text-gray-300, .text-gray-400 {
+  color: var(--color-text-light) !important;
+}
+
+.text-gray-200 {
+  color: var(--color-text-lighter) !important;
+}
+
+/* Override for background colors */
+.bg-primary-light {
+  background-color: var(--color-background-light) !important;
+}
+
+/* Fun radio button or checkbox styling */
+input[type="radio"], input[type="checkbox"] {
+  accent-color: var(--color-accent-pink);
+}
+
+/* Input field styling */
+input, textarea, select {
+  border-radius: 12px !important;
+  border-color: var(--color-border) !important;
+  background-color: white !important;
+  color: var(--color-text) !important;
+  transition: all 0.3s ease !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+  outline: none !important;
+}
+
+/* Fun animation for buttons and interactive elements */
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(236, 72, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(236, 72, 153, 0);
+  }
+}
+
+.btn-primary, .btn-accent {
+  background: linear-gradient(45deg, var(--color-accent-pink), var(--color-primary));
+  color: white !important;
+  border: none;
+  animation: pulse-border 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-accent:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* Navbar styling */
+nav {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.5);
+}
+
+/* Kid-friendly font */
+body, button, input, textarea, select {
+  font-family: 'Nunito', 'Comic Sans MS', 'Segoe UI', system-ui, sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', 'Comic Sans MS', 'Segoe UI', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+} 
