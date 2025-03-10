@@ -40,8 +40,8 @@ function App() {
               {/* Admin Routes - Protected by the AdminPage component itself */}
               <Route path="/admin" element={<AdminPage />} />
               
-              {/* User Dashboard */}
-              <Route path="/dashboard" element={<UserDashboardPage />} />
+              {/* User Dashboard - Now wrapped in Layout */}
+              <Route path="/dashboard" element={<Layout><UserDashboardPage /></Layout>} />
               
               {/* Main Routes with Layout */}
               <Route path="/" element={<Layout><HomePage /></Layout>} />
